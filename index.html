@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday 💙</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(to right, #0f2027, #2c5364);
+    color: white;
+    text-align: center;
+}
+
+/* Lock */
+#lock {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main */
+#main {
+    display: none;
+    padding: 30px;
+}
+
+/* Pages */
+.page {
+    display: none;
+    animation: fade 1s;
+}
+
+@keyframes fade {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+img, video {
+    width: 220px;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+/* Button */
+button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: none;
+    background: #00c6ff;
+    color: white;
+}
+
+/* Hearts */
+.heart {
+    position: fixed;
+    color: #00c6ff;
+    animation: float 5s linear infinite;
+}
+
+/* Stars */
+.star {
+    position: fixed;
+    color: white;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    from {transform: translateY(100vh);}
+    to {transform: translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOCK -->
+<div id="lock">
+    <h2>Enter Password 💙</h2>
+    <input id="pass">
+    <button onclick="unlock()">Unlock</button>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MAIN -->
+<div id="main">
+
+<div class="page" id="p1">
+    <h1>🎉 Happy Birthday 💙</h1>
+    <p>
+        Wishing you a day filled with peace, happiness, and clarity.  
+        May this year bring you closer to everything you truly want in life.
+    </p>
+</div>
+
+<div class="page" id="p2">
+    <p>
+        Life is not always easy, but I hope you always find the strength 
+        to move forward and handle everything with patience and confidence.
+    </p>
+    <img src="photo1.jpg">
+</div>
+
+<div class="page" id="p3">
+    <p>
+        May your efforts turn into success and your struggles turn into lessons.  
+        Keep growing, keep learning, and keep moving ahead.
+    </p>
+    <img src="photo2.jpg">
+</div>
+
+<div class="page" id="p4">
+    <p>
+        I wish that you always stay positive and focused on your goals.  
+        May every step you take lead you towards something better.
+    </p>
+    <img src="photo3.jpg">
+</div>
+
+<div class="page" id="p6">
+    <h2>🎁 Final Message 💙</h2>
+    <p>
+        One small thing I want to say — try to control your anger.  
+        Sometimes silence and patience can solve things better.  
+        Protect your peace and stay calm.  
+        <br><br>
+        Happy Birthday once again 🎂💙
+    </p>
+    <button onclick="finalSurprise()">Tap for Surprise 🎁</button>
+</div>
+
+<div class="page" id="p7">
+    <h1>💙 Stay Happy Always 💙</h1>
+</div>
+
+<button onclick="nextPage()">Next ➡️</button>
+
+</div>
+
+<script>
+let current = 1;
+
+function unlock(){
+    let p = document.getElementById("pass").value;
+
+    if(p === "Dushman❤️Jaan"){
+        document.getElementById("lock").style.display="none";
+        document.getElementById("main").style.display="block";
+        document.getElementById("music").play();
+        showPage(current);
+        hearts();
+        stars();
+    } else {
+        alert("Wrong password");
+    }
+}
+
+function showPage(n){
+    let pages = document.querySelectorAll(".page");
+    pages.forEach(p => p.style.display="none");
+    document.getElementById("p"+n).style.display="block";
+}
+
+function nextPage(){
+    current++;
+    if(current <= 7){
+        showPage(current);
+    }
+}
+
+/* Hearts */
+function hearts(){
+    setInterval(()=>{
+        let h=document.createElement("div");
+        h.className="heart";
+        h.innerText="💙";
+        h.style.left=Math.random()*100+"vw";
+        document.body.appendChild(h);
+        setTimeout(()=>{h.remove();},5000);
+    },400);
+}
+
+/* Stars */
+function stars(){
+    setInterval(()=>{
+        let s=document.createElement("div");
+        s.className="star";
+        s.innerText="✨";
+        s.style.left=Math.random()*100+"vw";
+        document.body.appendChild(s);
+        setTimeout(()=>{s.remove();},6000);
+    },700);
+}
+
+/* Final */
+function finalSurprise(){
+    alert("🎉 You are important. Stay strong 💙");
+}
+</script>
+
+</body>
+</html>
